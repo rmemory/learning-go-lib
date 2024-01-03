@@ -18,6 +18,11 @@ var pf ProgrammingFunctions = ProgrammingFunctions{}
 (step 3) When calling the function (in this example, NewUuid) add the "pf" like follows:
 
 uuidWithHyphen := pf.NewUuid(false)
+
+(step 4) Clients of the interfaces (like learning-go-api, which uses the NewUuid function) will need to have the "p programming.Interface" passed to it so that it can use NewUuid. For example, 
+
+func postUuid(p programming.Interface) {
+	uuid := p.NewUuid(withoutHyphens)
 */
 type ProgrammingFunctions struct {
 }
