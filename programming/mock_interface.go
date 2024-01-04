@@ -9,6 +9,41 @@ type MockInterface struct {
 	mock.Mock
 }
 
+// DebugJWT provides a mock function with given fields: tokenString
+func (_m *MockInterface) DebugJWT(tokenString string) (string, string, error) {
+	ret := _m.Called(tokenString)
+
+	if len(ret) == 0 {
+		panic("no return value specified for DebugJWT")
+	}
+
+	var r0 string
+	var r1 string
+	var r2 error
+	if rf, ok := ret.Get(0).(func(string) (string, string, error)); ok {
+		return rf(tokenString)
+	}
+	if rf, ok := ret.Get(0).(func(string) string); ok {
+		r0 = rf(tokenString)
+	} else {
+		r0 = ret.Get(0).(string)
+	}
+
+	if rf, ok := ret.Get(1).(func(string) string); ok {
+		r1 = rf(tokenString)
+	} else {
+		r1 = ret.Get(1).(string)
+	}
+
+	if rf, ok := ret.Get(2).(func(string) error); ok {
+		r2 = rf(tokenString)
+	} else {
+		r2 = ret.Error(2)
+	}
+
+	return r0, r1, r2
+}
+
 // NewUuid provides a mock function with given fields: withoutHyphen
 func (_m *MockInterface) NewUuid(withoutHyphen bool) string {
 	ret := _m.Called(withoutHyphen)

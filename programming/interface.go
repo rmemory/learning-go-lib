@@ -3,6 +3,7 @@ package programming
 
 type Interface interface {
 	NewUuid(withoutHyphen bool) string
+	DebugJWT(tokenString string) (string, string, error)
 }
 
 /* The following interface makes it easier to mock methods that implement any of the interfaces in this file. We do this by using the following structure as a receiver type for any method implementing of the interfaces. That allows any testing code to have two different implementations: A real one and a mock.
@@ -23,6 +24,13 @@ uuidWithHyphen := pf.NewUuid(false)
 
 func postUuid(p programming.Interface) {
 	uuid := p.NewUuid(withoutHyphens)
+
+Or, if clients are wanting to use mocked data (in client test code), they'd do something like this
+
+func TestPostUuid(mockInterface *programminglib.MockInterface, t *testing.T) {
+	mockInterface := programminglib.MockInterface{}
+	mockCall := mockInterface.On("NewUuid", false)
+	mockCall.Return("1ce44be5-fe68-46f7-a153-51c1c91a4ae4")
 */
 type ProgrammingFunctions struct {
 }
